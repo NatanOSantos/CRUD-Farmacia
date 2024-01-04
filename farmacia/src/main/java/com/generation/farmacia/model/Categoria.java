@@ -30,6 +30,10 @@ public class Categoria {
 	@NotBlank(message = "O atributo tipo do produto é obrigatório")
 	@Size(max = 255, message = "O Atributo tipo do produto é obrigatorio máximo 255 caracteres.")
 	public String tipoDoProduto;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("categoria")
+	private List<Produto> produto;
 
 	public Long getId() {
 		return id;
